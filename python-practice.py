@@ -20,4 +20,4 @@ class IntString:
 ints = [1,2,3,4]
 strings = [1,2,3,4]
 intString = IntString(ints, strings)
-print(intString.is_equal())
+print(intString.__string_to_int())
