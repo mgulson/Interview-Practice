@@ -93,14 +93,38 @@ class Optimize {
   }
 }
 
+class OptimizeLinear {   
+  constructor(array){
+    this.bigArray = array
+  }
+
+  findMaxSum(){
+    let maxSum = 0
+    let currSum = 0
+    for(let i = 0; i < this.bigArray.length; i++){
+      const currElement = this.bigArray[i]
+      if(currElement + currSum < 0){
+        currSum = 0
+      } else {
+        currSum = currElement + currSum
+      }
+      maxSum = Math.max(maxSum, currSum)
+    }
+    return maxSum
+  }
+}
 
 
 
 
+const LCExample = [-2,1,-3,4,-1,2,1,-5,4]
 
-let bruteForce = new BruteForce([1,2,-2,4])
+let bruteForce = new BruteForce(LCExample)
 console.log(bruteForce.sums)
 console.log('brute force max sum', bruteForce.findMaxSum())
 
-let optimize = new Optimize([1,2,-2,4])
+let optimize = new Optimize(LCExample)
 console.log('optimize', optimize.findMaxSum())
+
+let optimizeLinear = new OptimizeLinear(LCExample)
+console.log('optimizeLinear',optimizeLinear.findMaxSum())
