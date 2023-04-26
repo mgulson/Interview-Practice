@@ -101,8 +101,7 @@ class OptimizeLinear {
   findMaxSum(){
     let maxSum = 0
     let currSum = 0
-    for(let i = 0; i < this.bigArray.length; i++){
-      const currElement = this.bigArray[i]
+    for(let currElement of this.bigArray){
       if(currElement + currSum < 0){
         currSum = 0
       } else {
