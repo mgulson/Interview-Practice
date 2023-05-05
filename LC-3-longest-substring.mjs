@@ -55,3 +55,36 @@ class BruteForce {
 
 let bf = new BruteForce('hello world')
 console.log(bf.maxSubstring())
+
+
+class LinearSubstring {
+  constructor(string){
+    this.bigStr = string
+    this.charHash = {}
+  }
+
+  longestSubstringLength(){
+    let maxStringLength = 0;
+    let prevCharHash = {}
+    let left = 0;
+    let right = 0;
+    while(right < this.bigStr.length){
+      if(prevCharHash[this.bigStr[right]]) {
+        // move left pointer
+        prevCharHash[this.bigStr[left]] = 0
+        left +=1
+      } else {
+        // move right pointer
+        maxStringLength = Math.max(maxStringLength, right - left + 1)
+        prevCharHash[this.bigStr[right]] = 1
+        right +=1
+      }
+    }
+    return maxStringLength
+  }
+}
+
+
+let linear = new LinearSubstring('hello world')
+
+console.log(linear.longestSubstringLength())
