@@ -20,3 +20,55 @@
 
 // Input: nums = [1], target = 0
 // Output: -1
+
+class BruteForce {
+  constructor(array, target){
+    this.initArray = array
+    this.target = target
+  }
+
+  sort() {
+    this.sortedArray = this.initArray.sort()
+    return this.sortedArray
+  }
+
+  search(array) {
+    return this.binSearch(0, array.length - 1)
+  }
+
+  binSearch(l, r){
+    // array is initial array
+    let array = this.initArray
+    let mid = Math.ceil((r + l) / 2)
+
+    console.log(mid)
+
+    if (array[mid] === this.target){
+      return mid
+    } else if( l === r){
+      return -1
+    } else if (array[mid] < this.target){
+      return this.binSearch(mid, r)
+    } else {
+      return this.binSearch(l, mid)
+    }
+  }
+}
+
+// Brute Force //
+
+const arr = [1, 2, 3, 4, 5]
+
+let bf = new BruteForce(arr, 4)
+
+console.log(bf.search(arr))
+
+const rotArr = [4,5,6,7,0,1,2]
+
+bf = new BruteForce(rotArr, 4)
+
+let sortArr = bf.sort()
+
+console.log(bf.search(rotArr))
+
+////////////////////
