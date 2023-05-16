@@ -55,20 +55,80 @@ class BruteForce {
   }
 }
 
+class SimplifiedSolution {
+  constructor(array, target){
+    this.initArray = array
+    this.target = target
+  }
+
+  sort() {
+    this.sortedArray = this.initArray.sort()
+    return this.sortedArray
+  }
+
+  search(array) {
+    return this.binSearch(0, array.length - 1)
+  }
+
+  binSearch(l, r){
+    // array is initial array
+    let array = this.initArray
+    let mid = Math.ceil((r + l) / 2)
+
+    console.log(`l,r: ${l}, ${r}`)
+
+    if (array[mid] === this.target){
+      return mid
+    } else if( l === r){
+      return -1
+    } else if(array[l] === this.target)
+      return l
+    else if(array[r] === this.target)
+      return r
+    else if (array[mid] < array[r]){
+      // right half sorted
+      if(this.target < array[r] && this.target > array[mid] ) {
+        return this.binSearch(mid+1, r)
+      } else {
+        return this.binSearch(l, mid-1)
+      }
+    } else{
+      if (array[l] < array[mid]){
+        // left half sorted
+        if(this.target < array[mid] && this.target > array[l]) {
+          return this.binSearch(l, mid - 1)
+        } else {
+          return this.binSearch(mid+1, r)
+        }
+      } else {
+        return -1
+      }
+    }
+  }
+}
+
+
 // Brute Force //
 
-const arr = [1, 2, 3, 4, 5]
+// const arr = [1, 2, 3, 4, 5]
 
-let bf = new BruteForce(arr, 4)
+// let bf = new BruteForce(arr, 4)
 
-console.log(bf.search(arr))
+// console.log(bf.search(arr))
 
-const rotArr = [4,5,6,7,0,1,2]
+// const rotArr = [4,5,6,7,0,1,2]
 
-bf = new BruteForce(rotArr, 4)
+// bf = new BruteForce(rotArr, 4)
 
-let sortArr = bf.sort()
+// let sortArr = bf.sort()
 
-console.log(bf.search(rotArr))
+// console.log(bf.search(rotArr))
 
+const rotArr = [4,5,6,7,8,9, 10, 11, 12, 13, 0,1,2]
+
+
+let ss = new SimplifiedSolution(rotArr, 0)
+
+console.log(ss.search(rotArr))
 ////////////////////
+
