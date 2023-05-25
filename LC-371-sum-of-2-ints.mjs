@@ -28,9 +28,20 @@ class binarySum {
     const length2 = num2.length
 
     for(let i=0; i < Math.max(length1, length2)+ 1; i++){
-      if(i > Math.min(num1.length, num2.length) -1) {
+      if( length1 != length2 && i > Math.min(length1 , length2) - 1){
+        let diff
+        if(length1 > length2){
+          diff = num1.slice(0,length1 - length2)
+        } else {
+          diff = num2.slice(0, length2 - length1)
+        }
+
+        sum = diff + sum
+        break
+      } else if(i > Math.min(length1, length2) -1) {
         //implement mismatches
         sum = String(carryOver) + sum
+        break
       } else{
         let a = num1[length1 - i - 1] 
         let b = num2[length2 - i - 1]
@@ -39,7 +50,7 @@ class binarySum {
         if(a === '1' && b === '1' && carryOver === '1') {
           c = 1
           carryOver = 1
-        } else if((a === '1' || b === '1' && carryOver === '1') || a === '1' && b === '1'){
+        } else if(((a === '1' || b === '1') && carryOver === '1') || a === '1' && b === '1'){
           c = 0
           carryOver = 1
         } else if( a === '1' || b === '1' || carryOver === '1') {
@@ -58,6 +69,11 @@ class binarySum {
   }
 }
 
-let bs = new binarySum(1,1)
+let bs = new binarySum(2,2)
 
-console.log(bs.binary)
+console.log('2 + 2 = 100 :', bs.binary)
+
+bs = new binarySum(10, 5)
+
+console.log('10 + 5 =  1111 : ', bs.binary)
+
