@@ -62,9 +62,7 @@ class binarySum {
     let carryOver = 0
     const length1 = num1.length
     const length2 = num2.length
-    const myThis = this
     const arr = [1,2,3]
-    arr.forEach((element) => console.log(myThis))
 
     for(let i=0; i < Math.max(length1, length2)+ 1; i++){
       if( length1 != length2 && i > Math.min(length1 , length2) - 1){
@@ -107,6 +105,29 @@ class binarySum {
 
     return sum
   }
+
+  convertToDecimal(binary){
+    return parseInt(binary, 2)
+  }
+}
+
+class binarySumSimple {
+  constructor(a, b){
+    this.a = a
+    this.b = b
+  }
+
+  sum() {
+    let a = this.a
+    let b = this.b
+     
+    do {
+      let holdb = b
+      b = (a ^ b);
+      a = (a&holdb) << 1;
+    } while(a > 1)
+    return b
+  }
 }
 
 let bs = new binarySum(2,2)
@@ -119,5 +140,12 @@ console.log('10 + 5 =  1111 : ', bs.binary)
 
 bs = new binarySum(20, 5)
 
-console.log('20 + 5 = 011001: ', bs.binary)
+let binary = bs.binary
+console.log('20 + 5 = 011001: ', binary)
+console.log('25: ', bs.convertToDecimal(binary))
 
+let bs1 = new binarySumSimple(2,2)
+let bs2 = new binarySumSimple(10, 15)
+
+console.log('2 + 2 = 4 ', bs1.sum())
+console.log('10 + 15 = 25 ', bs2.sum())
