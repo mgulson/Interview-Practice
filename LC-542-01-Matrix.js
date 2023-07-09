@@ -18,6 +18,7 @@ class Matrix {
     this.matrix = matrix
     this.m = matrix.length
     this.n = matrix[0].length
+    this.shortestPaths = [...Array(this.m)].map(e => Array(this.n).fill(-1));
   }
 
   findPathToZero(){
@@ -27,24 +28,25 @@ class Matrix {
     const m = matrix.length
     const n = matrix[0].length
 
-    const shortestPaths =  [...Array(m)].map(e => Array(n).fill(0));
     
     for(let i =0; i<m; i++){
       for(let j =0; j<n; j++){
-        shortestPaths[i][j] = this.findShortestPath(i, j, -1,-1)
+        this.shortestPaths[i][j] = this.findShortestPath(i, j, -1,-1)
       }
     }
 
-    return shortestPaths
+    return this.shortestPaths
   }
 
   findShortestPath(i , j, previ, prevj){
-    console.log('i, j', i, ', ', j)
     const m = this.m
     const n = this.n
 
     const matrix = this.matrix
-    if(matrix[i][j] === 0){
+    
+    if(this.shortestPaths[i][j] !== -1){
+      return this.shortestPaths[i][j]
+    } else if(matrix[i][j] === 0){
       return 0
     } else { 
       if(i === 0){
@@ -143,17 +145,23 @@ class Matrix {
 
 }
 
-// let matrix = mat = [[0,0,0],[0,1,0],[0,0,0]]
-// let result = new Matrix(matrix)
+let matrix = mat = [[0,0,0],[0,1,0],[0,0,0]]
+let result = new Matrix(matrix)
 
-// console.log('findPathToZero', result.findPathToZero())
+console.log('findPathToZero', result.findPathToZero())
 
 // Example 2
 
 
-matrix = mat = [[0,0,0],[0,1,0],[1,1,1]]
+matrix = [[0,0,0],[0,1,0],[1,1,1]]
 result = new Matrix(matrix)
 
-console.log('findShortestPath', result.findPathToZero())
+
+console.log('findPathToZero', result.findPathToZero())
 
 // console.log('findPathToZero', result.findPathToZero())
+
+matrix = [[1,1,1],[1,0,1],[1,1,1]]
+result = new Matrix(matrix)
+
+console.log('findPathToZero', result.findPathToZero())
