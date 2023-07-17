@@ -57,3 +57,16 @@ console.log(kClosest(points, k))
 points = [[3,3],[5,-1],[-2,4]], k = 2
 
 console.log(kClosest(points, k))
+
+
+/// Playing around with different function calls javascript
+
+var myFunction = function(a,b){
+  return a - b
+}
+
+const myFunction2 = (a,b) => a-b
+
+console.log(myFunction(10, 5))
+
+console.log(myFunction2(10, 5))
