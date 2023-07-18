@@ -1,5 +1,4 @@
-// LC-547 number of provinces
-
+//Michael's graph class
 
 class Graph {
   constructor(){
@@ -64,25 +63,3 @@ class Graph {
     return numberOfConnected
   }
 }
-
-let graph = new Graph()
-
-
-graph.addElement('0', ['1'])
-graph.addElement('1', ['0'])
-
-
-console.log(graph.findNumberOfConnected())
-
-
-
-graph = new Graph()
-graph.addEdge('0', '1')
-graph.addEdge('1', '0')
-graph.addEdge('1', '2')
-graph.addEdge('2', '1')
-
-graph.addEdge('3', '4')
-
-
-console.log(graph.findNumberOfConnected())
