@@ -41,6 +41,12 @@ class TwoSum:
 
     return -1
 
+  def print(self):
+    hash = {1: 2, 2: 3, 4: 5}
+    
+    for k,v in hash.items():
+      print(k, v)
+
 
   
 nums = [3, 3]
@@ -60,3 +66,5 @@ target = 6
 
 
 print(TwoSum(nums, target).perform())
+
+print(TwoSum(nums, target).print())
