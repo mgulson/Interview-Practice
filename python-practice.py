@@ -1,23 +1,25 @@
-## Python Practice
+# python-practice.py
 
-class IntString:
-  def __init__(self, numbers, strings):
-    self.numbers = numbers
-    self.strings = strings
+from collections import deque
 
-  
-  def is_equal(self):
-    return self.numbers == self.__string_to_int()
+import heapq
 
-  def __string_to_int(self):
-    new_ints = []
-    for i in self.strings:
-      new_ints.append(int(i))
-    return new_ints
+queue = deque([])
+queue.append(1)
+queue.append(2)
+print(queue)
+print(queue.popleft())
+print(queue.popleft())
+
+heap = []
+
+heapq.heappush(heap, 1)
+heapq.heappush(heap, 10)
+heapq.heappush(heap, 5)
+heapq.heappush(heap, 20)
 
 
+print(heap)
 
-ints = [1,2,3,4]
-strings = [1,2,3,4]
-intString = IntString(ints, strings)
-print(intString.__string_to_int())
+for i in range(len(heap)):
+  print(heapq.heappop(heap))
