@@ -64,3 +64,15 @@ console.log(packets.sort((a,b)=> a-b))
 console.log(getQualityOfChannels(packets, n))
 console.log(Math.ceil((5+10+11+12+14)/5))
 
+
+
+def createHash(wait):
+    hash_ = {}
+    for i in range(len(wait)):
+        if i >= wait[i]:
+            if wait[i] in hash_:
+                hash_[wait[i]] += 1
+            else:
+                hash_[wait[i]] = 1
+                
+    return hash_
