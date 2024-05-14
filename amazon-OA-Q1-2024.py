@@ -30,7 +30,7 @@ class Solution:
       print(modArray)
       sumArr = sum(modArray)
       if sumArr <= days:
-        lastAns = right
+        lastAns = mid
         right = mid - 1
       else:
         left = mid + 1
@@ -43,4 +43,4 @@ class Solution:
 pages = [2,4,3]
 days = 4
 
-print('ans = 4', Solution().minPages(pages, days))
+print('ans = 3', Solution().minPages(pages, days))
