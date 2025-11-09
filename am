@@ -1,0 +1,35 @@
+class Solution:
+  def findRedundants(self, word, a, b):
+    ## a*V + b*C
+    self.a = a
+    self.b = b
+    ans = 0
+    for i in range(len(word)):
+      for j in range(i, len(word)):
+        if self.isValid(word[i:j]):
+          ans += 1
+
+    return ans
+
+      
+
+  def isValid(self, word):
+    total = 0
+    for char in word:
+      if self.isVowel(char):
+        total += self.a
+      else:
+        total += self.b
+
+    return total
+  
+  def isVowel(self, char):
+    return char == 'a' or char == 'e' or char == 'i' or char == 'o' or char == 'u'
+
+word = 'abbacc'
+a = -1
+b = 2
+
+soln = Solution()
+
+print(soln.findRedundants(word, a, b))
